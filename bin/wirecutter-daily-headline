@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require './lib/wirecutter_daily_headline'
+require 'date'
+
+WirecutterDailyHeadline::CLI.new.call
