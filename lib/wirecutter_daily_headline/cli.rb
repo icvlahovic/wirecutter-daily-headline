@@ -27,10 +27,12 @@ class WirecutterDailyHeadline::CLI
       input = gets.strip
       case input
       when "1"
-        puts "VR is still a new technology that’s far from a “most people” purchase..."
+        WirecutterDailyHeadline::Article.display
       when "2"
-        puts "Now transferring you to your browser..."
-      # figure out an "else" option for invalid input
+        puts "Now redirecting you to your browser..."
+        sleep 1
+        WirecutterDailyHeadline::Article.redirect
+      # Figure out an "else" option for invalid input
       end
     end
   end
