@@ -18,6 +18,10 @@ class WirecutterDailyHeadline::Article
   def self.display
     text = Nokogiri::HTML(open("#{@@article.url}")).search("section.intro p")
     # Figure out how to remove last three elements (pertaining to newsletter options)
+    3.times do
+      text.delete(text.last)
+    end
+    # This works, but it feels dirty and perhaps prone to breakage....
     text.each {|e| puts e.text.strip}
   end
 
