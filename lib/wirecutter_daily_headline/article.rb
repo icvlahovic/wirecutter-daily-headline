@@ -22,11 +22,22 @@ class WirecutterDailyHeadline::Article
       text.delete(text.last)
     end
     # This works, but it feels dirty and perhaps prone to breakage....
-    text.each {|e| puts e.text.strip}
+    text.each do |e|
+      puts e.text.strip
+      puts
+    end
   end
 
   def self.redirect
     Launchy.open("#{@@article.url}")
+  end
+
+  def self.research
+    text = Nokogiri::HTML(open("#{@@article.url}")).search("h2.chapter-heading, div.chapter-body p")
+    text.each do |e|
+      puts e.text.strip
+      puts
+    end
   end
 
 end

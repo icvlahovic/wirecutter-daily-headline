@@ -22,6 +22,7 @@ class WirecutterDailyHeadline::CLI
         Choose from the following menu options:
         - To read the article in your console, enter "1"
         - To read the article in your browser, enter "2"
+        - For more information about today's product(s), enter "3"
         - Type "exit" at any point to leave the application
       HEREDOC
       input = gets.strip
@@ -33,6 +34,8 @@ class WirecutterDailyHeadline::CLI
         sleep 1
         WirecutterDailyHeadline::Article.redirect
       # Figure out an "else" option for invalid input
+      when "3"
+        WirecutterDailyHeadline::Article.research
       end
     end
   end
