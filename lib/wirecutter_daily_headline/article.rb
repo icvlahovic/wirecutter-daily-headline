@@ -16,14 +16,10 @@ class WirecutterDailyHeadline::Article
   end
 
   def self.display
-    text = Nokogiri::HTML(open("#{@@article.url}")).search("section.intro p")
-    # Figure out how to remove last three elements (pertaining to newsletter options)
-    3.times do
-      text.delete(text.last)
-    end
-    # This works, but it feels dirty and perhaps prone to breakage....
+    puts
+    text = Nokogiri::HTML(open("#{@@article.url}")).search("section.lede p, section.intro > p")
     text.each do |e|
-      puts e.text.strip
+      puts e.text.strip if e.text.strip != "Advertisement"
       puts
     end
   end
@@ -33,10 +29,23 @@ class WirecutterDailyHeadline::Article
   end
 
   def self.research
-    text = Nokogiri::HTML(open("#{@@article.url}")).search("h2.chapter-heading, div.chapter-body p")
+    puts
+    text = Nokogiri::HTML(open("#{@@article.url}")).search("h2.chapter-heading, h3.chapter-heading, div.chapter-body p")
     text.each do |e|
       puts e.text.strip
       puts
+    end
+  end
+
+  def self.prices
+    info = Nokogiri::HTML(open("#{@@article.url}")).search("h3.product-name, h2.title, p.description, div.product-pricebox-sources")
+    info.each do |e|
+      puts e.text.strip
+      puts
+    end
+    links = Nokogiri::HTML(open("#{@@article.url}")).search("div.product-pricebox-sources a")
+    links.each do |link|
+      @link = link
     end
   end
 

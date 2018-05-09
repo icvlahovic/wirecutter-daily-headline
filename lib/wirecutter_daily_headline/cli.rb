@@ -23,25 +23,30 @@ class WirecutterDailyHeadline::CLI
         - To read the article in your console, enter "1"
         - To read the article in your browser, enter "2"
         - For more information about today's product(s), enter "3"
+        - To purchase today's product(s), enter "4"
         - Type "exit" at any point to leave the application
       HEREDOC
       input = gets.strip
-      case input
-      when "1"
+      if input == "1"
         WirecutterDailyHeadline::Article.display
-      when "2"
+      elsif input == "2"
         puts "Now redirecting you to your browser..."
         sleep 1
         WirecutterDailyHeadline::Article.redirect
-      # Figure out an "else" option for invalid input
-      when "3"
+      elsif input == "3"
         WirecutterDailyHeadline::Article.research
+      elsif input == "4"
+        WirecutterDailyHeadline::Article.prices
+      elsif input == "exit"
+        break
+      else
+        puts "Sorry, that's not a valid command!"
       end
     end
   end
 
   def goodbye
-    puts "Until next time!"
+    puts "Thanks for reading! Until next time!"
   end
 
 end
