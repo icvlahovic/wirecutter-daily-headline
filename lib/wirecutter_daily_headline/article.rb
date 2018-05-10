@@ -39,13 +39,14 @@ class WirecutterDailyHeadline::Article
 
   def self.research
     puts
-    text = Nokogiri::HTML(open("#{@@article.url}")).css("h2.chapter-heading, h3.chapter-heading, div.chapter-body p")
+    text = Nokogiri::HTML(open("#{@@article.url}")).css("h2.chapter-heading, h3.chapter-heading, div.chapter-body > p, div#sources-panel li")
+
     output = text.each do |e|
       puts e.text.strip
       puts
     end
     sleep 0.5
-    puts "Sorry, it appears there isn't any additional content today!" if output == 0
+    output > 0 ? nil : "Sorry, it appears there isn't any additional content today!"
     puts
   end
 
