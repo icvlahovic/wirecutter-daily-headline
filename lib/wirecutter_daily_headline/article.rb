@@ -55,7 +55,10 @@ class WirecutterDailyHeadline::Article
 
   def self.links
     links = Nokogiri::HTML(open("#{@@article.url}")).css("div.content p > a")
-    links.map { |link| puts "#{link.text} - #{link['href'].strip}" }
+    links.map do |link|
+      puts "#{link.text} - #{link['href'].strip}"
+      puts
+    end
   end
 
 end

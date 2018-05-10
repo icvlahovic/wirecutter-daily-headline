@@ -25,6 +25,7 @@ class WirecutterDailyHeadline::CLI
         - To read the article in your console, enter "1"
         - To read the article in your browser, enter "2"
         - For the research on today's product(s), enter "3"
+        - For a list of links from today's article, enter "4"
         - Type "exit" at any point to leave the application
       HEREDOC
       puts
