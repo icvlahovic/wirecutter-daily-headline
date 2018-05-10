@@ -1,8 +1,12 @@
 # WirecutterDailyHeadline
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/wirecutter_daily_headline`. To experiment with that code, run `bin/console` for an interactive prompt.
+Welcome to WirecutterDailyHeadline! This basic CLI allows you, the user, to read The Wirecutter's
+headline of the day from the comfort of your Terminal!  Light readers can quickly skim through a summary of the article, while more diehard fans can delve into the nitty-gritty and peruse the
+extensive research that The Wirecutter puts into writing each review.  Want to see pictures of, or perhaps buy one of the products?  Or maybe you simply want to read more product reviews from The Wirecutter?  WirecutterDailyHeadline can open the article in your default Internet browser, where you can fall down a Wirecutter Hole at your leisure!  (I take no responsibility for any spontaneous purchases you make while doing so.)
 
-TODO: Delete this and the text above, and describe your gem
+All data is scraped directly from The Wirecutter's website using Nokogiri.
+
+(I am not affiliated with The Wirecutter in any way; I'm merely a fan of their work who needed to build a gem for a school assignment, but I plan to build it out as I learn more!)  
 
 ## Installation
 
@@ -19,10 +23,6 @@ And then execute:
 Or install it yourself as:
 
     $ gem install wirecutter_daily_headline
-
-## Usage
-
-TODO: Write usage instructions here
 
 ## Development
 
