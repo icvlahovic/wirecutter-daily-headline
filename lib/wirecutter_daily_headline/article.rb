@@ -15,11 +15,20 @@ class WirecutterDailyHeadline::Article
     puts @@article.author
   end
 
+# doc.xpath('//nav//ul//li/a', '//article//h2').each do |link|
+
   def self.display
+    today
     puts
-    text = Nokogiri::HTML(open("#{@@article.url}")).search("section.lede p, section.intro > p")
-    text.each do |e|
-      puts e.text.strip if e.text.strip != "Advertisement"
+    text = Nokogiri::HTML(open("#{@@article.url}"))
+    alt_text = Nokogiri::HTML(open("#{@@article.url}"))
+
+    text.css("section.lede p, div.heading h, section.intro > p").each do |e|
+      puts e.text.strip unless e.text.strip == "Advertisement"
+      puts
+    end
+    alt_text.css("section.post-content > h3, section.post-content > p, section.post-content li").each do |e|
+      puts e.text.strip unless e.text.strip == "Advertisement"
       puts
     end
   end
@@ -30,23 +39,14 @@ class WirecutterDailyHeadline::Article
 
   def self.research
     puts
-    text = Nokogiri::HTML(open("#{@@article.url}")).search("h2.chapter-heading, h3.chapter-heading, div.chapter-body p")
-    text.each do |e|
+    text = Nokogiri::HTML(open("#{@@article.url}")).css("h2.chapter-heading, h3.chapter-heading, div.chapter-body p")
+    output = text.each do |e|
       puts e.text.strip
       puts
     end
-  end
-
-  def self.prices
-    info = Nokogiri::HTML(open("#{@@article.url}")).search("h3.product-name, h2.title, p.description, div.product-pricebox-sources")
-    info.each do |e|
-      puts e.text.strip
-      puts
-    end
-    links = Nokogiri::HTML(open("#{@@article.url}")).search("div.product-pricebox-sources a")
-    links.each do |link|
-      @link = link
-    end
+    sleep 0.5
+    puts "Sorry, it appears there isn't any additional content today!" if output == 0
+    puts
   end
 
 end

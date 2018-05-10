@@ -9,15 +9,15 @@ Gem::Specification.new do |spec|
   spec.authors       = ["icvlahovic"]
   spec.email         = ["banddorkfht7@gmail.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{wirecutter-daily-headline lives up to its name, presenting The Wirecutter's daily headline article to you, the reader}
+  spec.description   = %q{wirecutter-daily-headline has a few options: either read the article (and additional information) in your console (scraped with Nokogiri), or have Launchy redirect you to your browser, where you can read the article in its original form.}
+  spec.homepage      = "https://github.com/icvlahovic/wirecutter-daily-headline"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
   if spec.respond_to?(:metadata)
-    spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
+    spec.metadata["allowed_push_host"] = "'http://mygemserver.com'"
   else
     raise "RubyGems 2.0 or newer is required to protect against " \
       "public gem pushes."
