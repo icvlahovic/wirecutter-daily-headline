@@ -1,4 +1,5 @@
 require 'launchy'
+require 'uri'
 
 class WirecutterDailyHeadline::Article
 
@@ -14,8 +15,6 @@ class WirecutterDailyHeadline::Article
     puts @@article.title
     puts @@article.author
   end
-
-# doc.xpath('//nav//ul//li/a', '//article//h2').each do |link|
 
   def self.display
     today
@@ -48,6 +47,15 @@ class WirecutterDailyHeadline::Article
     sleep 0.5
     output > 0 ? nil : "Sorry, it appears there isn't any additional content today!"
     puts
+  end
+
+  def make_link(url)
+    puts '<a href="' + url + '">' + url + '</a>'
+  end
+
+  def self.links
+    links = Nokogiri::HTML(open("#{@@article.url}")).css("div.content p > a")
+    links.map { |link| puts "#{link.text} - #{link['href'].strip}" }
   end
 
 end

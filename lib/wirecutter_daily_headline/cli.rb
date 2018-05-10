@@ -10,9 +10,11 @@ class WirecutterDailyHeadline::CLI
 
   def headline
     time = Time.now
+    puts
     puts "Hello! It's #{time.strftime("%A, %B %d, %Y")}. Here's today's headline from The Wirecutter:"
     sleep 1
     @article = WirecutterDailyHeadline::Article.today
+    puts
   end
 
   def menu
@@ -22,9 +24,10 @@ class WirecutterDailyHeadline::CLI
         Choose from the following menu options:
         - To read the article in your console, enter "1"
         - To read the article in your browser, enter "2"
-        - For more information about today's product(s), enter "3"
+        - For the research on today's product(s), enter "3"
         - Type "exit" at any point to leave the application
       HEREDOC
+      puts
       input = gets.strip
       if input == "1"
         puts
@@ -39,6 +42,8 @@ class WirecutterDailyHeadline::CLI
       elsif input == "3"
         puts
         WirecutterDailyHeadline::Article.research
+      elsif input == "4"
+        WirecutterDailyHeadline::Article.links
       elsif input == "exit"
         break
       else
@@ -51,7 +56,8 @@ class WirecutterDailyHeadline::CLI
   end
 
   def goodbye
-    puts "Thanks for reading! Until next time!"
+    puts
+    puts "Thanks for reading! See you tomorrow with another headline!"
   end
 
 end
