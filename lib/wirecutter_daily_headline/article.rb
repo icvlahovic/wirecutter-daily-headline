@@ -1,5 +1,5 @@
 require 'launchy'
-require 'uri'
+# require 'uri'
 
 class WirecutterDailyHeadline::Article
 
@@ -40,25 +40,29 @@ class WirecutterDailyHeadline::Article
     puts
     text = Nokogiri::HTML(open("#{@@article.url}")).css("h2.chapter-heading, h3.chapter-heading, div.chapter-body > p, div#sources-panel li")
 
-    output = text.each do |e|
+    output = text.map do |e|
       puts e.text.strip
       puts
     end
     sleep 0.5
-    output > 0 ? nil : "Sorry, it appears there isn't any additional content today!"
+    puts "Sorry, it appears there isn't any additional content today!" if output.empty?
     puts
   end
 
-  def make_link(url)
-    puts '<a href="' + url + '">' + url + '</a>'
-  end
+  # def make_link(url)
+  #   puts '<a href="' + url + '">' + url + '</a>'
+  # end
 
   def self.links
-    links = Nokogiri::HTML(open("#{@@article.url}")).css("div.content p > a")
-    links.map do |link|
+    puts
+    links = Nokogiri::HTML(open("#{@@article.url}")).css("div.content p > a, section.post-content p > a")
+    output = links.map do |link|
       puts "#{link.text} - #{link['href'].strip}"
       puts
     end
+    sleep 0.5
+    puts "Sorry, it appears there isn't any additional content today!" if output.empty?
+    puts
   end
 
 end
