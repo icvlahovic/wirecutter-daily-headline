@@ -1,3 +1,6 @@
+require 'launchy'
+require 'pry'
+
 class WirecutterDailyHeadline::CLI
 
   def call
@@ -12,14 +15,17 @@ class WirecutterDailyHeadline::CLI
     time = Time.now
     puts
     puts "Hello! It's #{time.strftime("%A, %B %d, %Y")}. Here's today's headline from The Wirecutter:"
-    sleep 1
-    @article = WirecutterDailyHeadline::Article.today
+    sleep 0.5
+    @article = WirecutterDailyHeadline::Scraper.new.scrape_article[0]
+    puts @article.title
+    puts @article.author
     puts
   end
 
   def menu
     input = nil
     while input != "exit"
+      puts
       puts <<~HEREDOC
         Choose from the following menu options:
         - To read the article in your console, enter "1"
@@ -31,20 +37,18 @@ class WirecutterDailyHeadline::CLI
       puts
       input = gets.strip
       if input == "1"
-        puts
-        WirecutterDailyHeadline::Article.display
+        puts @article.text
       elsif input == "2"
         sleep 0.5
         puts
         puts "Now redirecting you to your browser..."
         puts
         sleep 1
-        WirecutterDailyHeadline::Article.redirect
+        Launchy.open("#{@article.url}")
       elsif input == "3"
-        puts
-        WirecutterDailyHeadline::Article.research
+        puts @article.research
       elsif input == "4"
-        WirecutterDailyHeadline::Article.links
+        puts @article.links
       elsif input == "exit"
         break
       else
@@ -53,6 +57,7 @@ class WirecutterDailyHeadline::CLI
         puts "Sorry, that's not a valid command!"
         puts
       end
+      # binding.pry
     end
   end
 
