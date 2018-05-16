@@ -17,9 +17,13 @@ class WirecutterDailyHeadline::CLI
     puts "Hello! It's #{time.strftime("%A, %B %d, %Y")}. Here's today's headline from The Wirecutter:"
     sleep 0.5
     @article = WirecutterDailyHeadline::Scraper.new.scrape_article[0]
+    today
+    puts
+  end
+
+  def today
     puts @article.title
     puts @article.author
-    puts
   end
 
   def menu
@@ -37,7 +41,13 @@ class WirecutterDailyHeadline::CLI
       puts
       input = gets.strip
       if input == "1"
-        puts @article.text
+        puts
+        today
+        puts
+        @article.text.each do |e|
+          puts e
+          puts
+        end
       elsif input == "2"
         sleep 0.5
         puts
@@ -46,9 +56,17 @@ class WirecutterDailyHeadline::CLI
         sleep 1
         Launchy.open("#{@article.url}")
       elsif input == "3"
-        puts @article.research
+        puts
+        @article.research.each do |e|
+          puts e
+          puts
+        end
       elsif input == "4"
-        puts @article.links
+        puts
+        @article.links.each do |e|
+          puts e
+          puts
+        end
       elsif input == "exit"
         break
       else
