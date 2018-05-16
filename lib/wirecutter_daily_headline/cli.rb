@@ -18,7 +18,6 @@ class WirecutterDailyHeadline::CLI
     sleep 0.5
     @article = WirecutterDailyHeadline::Scraper.new.scrape_article[0]
     today
-    puts
   end
 
   def today
@@ -46,7 +45,7 @@ class WirecutterDailyHeadline::CLI
         puts
         @article.text.each do |e|
           puts e
-          puts
+          puts unless e == @article.text.last
         end
       elsif input == "2"
         sleep 0.5
@@ -59,13 +58,13 @@ class WirecutterDailyHeadline::CLI
         puts
         @article.research.each do |e|
           puts e
-          puts
+          puts unless e == @article.research.last
         end
       elsif input == "4"
         puts
         @article.links.each do |e|
           puts e
-          puts
+          puts unless e == @article.links.last
         end
       elsif input == "exit"
         break
