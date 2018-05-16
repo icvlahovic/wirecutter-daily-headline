@@ -21,14 +21,13 @@ class WirecutterDailyHeadline::Scraper
     @article.research = content.css("h2.chapter-heading, h3.chapter-heading, div.chapter-body > p, div#sources-panel li").map do |e|
       e.text.strip
     end
-    puts "Sorry, it looks like there isn't any additional content" if @article.research.empty?
 
     @article.links = content.css("div.content p > a, section.post-content p > a").map do |link|
       "#{link.text} - #{link['href'].strip}"
     end
-    puts "Sorry, it looks like there isn't any additional content" if @article.links.empty?
 
     @article.save
+    # binding.pry
   end
 
 end

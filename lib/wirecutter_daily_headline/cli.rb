@@ -47,6 +47,10 @@ class WirecutterDailyHeadline::CLI
           puts e
           puts unless e == @article.text.last
         end
+        @article.alt_text.each do |e|
+          puts e
+          puts unless e == @article.text.last
+        end
       elsif input == "2"
         sleep 0.5
         puts
@@ -60,12 +64,14 @@ class WirecutterDailyHeadline::CLI
           puts e
           puts unless e == @article.research.last
         end
+        puts "Sorry, it looks like there isn't any additional content" if @article.research.empty?
       elsif input == "4"
         puts
         @article.links.each do |e|
           puts e
           puts unless e == @article.links.last
         end
+        puts "Sorry, it looks like there isn't any additional content" if @article.links.empty?
       elsif input == "exit"
         break
       else
@@ -82,5 +88,6 @@ class WirecutterDailyHeadline::CLI
     puts
     puts "Thanks for reading! See you tomorrow with another headline!"
   end
+  # binding.pry
 
 end
