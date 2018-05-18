@@ -64,14 +64,14 @@ class WirecutterDailyHeadline::CLI
           puts e
           puts unless e == @article.research.last
         end
-        puts "Sorry, it looks like there isn't any additional content" if @article.research.empty?
+        puts "Sorry, it looks like there isn't any additional content today!" if @article.research.empty?
       elsif input == "4"
         puts
         @article.links.each do |e|
           puts e
           puts unless e == @article.links.last
         end
-        puts "Sorry, it looks like there isn't any additional content" if @article.links.empty?
+        puts "Sorry, it looks like there isn't any additional content today!" if @article.links.empty?
       elsif input == "exit"
         break
       else
@@ -80,7 +80,6 @@ class WirecutterDailyHeadline::CLI
         puts "Sorry, that's not a valid command!"
         puts
       end
-      # binding.pry
     end
   end
 
@@ -88,6 +87,5 @@ class WirecutterDailyHeadline::CLI
     puts
     puts "Thanks for reading! See you tomorrow with another headline!"
   end
-  # binding.pry
 
 end
