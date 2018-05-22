@@ -1,9 +1,12 @@
-require 'launchy'
-require 'pry'
+# require 'launchy'
+# equire 'pry'
 
 class WirecutterDailyHeadline::CLI
 
   def call
+    @scraper = WirecutterDailyHeadline::Scraper.new
+    @scraper.scrape_article
+    @article = WirecutterDailyHeadline::Article.all.first
     headline
     sleep 1
     menu
@@ -16,7 +19,6 @@ class WirecutterDailyHeadline::CLI
     puts
     puts "Hello! It's #{time.strftime("%A, %B %d, %Y")}. Here's today's headline from The Wirecutter:"
     sleep 0.5
-    @article = WirecutterDailyHeadline::Scraper.new.scrape_article[0]
     today
   end
 
@@ -39,6 +41,8 @@ class WirecutterDailyHeadline::CLI
       HEREDOC
       puts
       input = gets.strip
+      # do we need details?
+      @scraper.scrape_details(@article) unless input.downcase == "exit"
       if input == "1"
         puts
         today
