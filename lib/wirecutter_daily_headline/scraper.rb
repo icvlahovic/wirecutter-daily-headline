@@ -48,7 +48,7 @@ class WirecutterDailyHeadline::Scraper
    article.text ||= @content.css("section.lede p, div.heading h, section.intro > p").map do |e|
      e.text.strip unless e.text.strip == "Advertisement"
    end
-   article.alt_text ||= @content.css("section.post-content > h3, section.post-content > p, section.post-content li").map do |e|
+   article.alt_text ||= @content.css("section.post-content > h3, section.post-content > h4, section.post-content > p, section.post-content li").map do |e|
      e.text.strip unless e.text.strip == "Advertisement"
    end
 
