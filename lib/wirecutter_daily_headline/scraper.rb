@@ -18,7 +18,7 @@ class WirecutterDailyHeadline::Scraper
       e.text.strip unless e.text.strip == "Advertisement"
     end
 
-    @article.research = content.css("h2.chapter-heading, h3.chapter-heading, div.chapter-body > p, div#sources-panel li").map do |e|
+    @article.research = content.css("h2.chapter-heading, h3.chapter-heading, div.chapter-body > p, div[role=tablist] li, div#sources-panel li").map do |e|
       e.text.strip
     end
 
