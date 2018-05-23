@@ -31,7 +31,6 @@ class WirecutterDailyHeadline::Scraper
     end
 
     @article.save
-    # binding.pry
   end
 
 end
