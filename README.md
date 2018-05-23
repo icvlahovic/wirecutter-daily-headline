@@ -6,7 +6,9 @@ extensive research that The Wirecutter puts into writing each review.  Want to s
 
 All data is scraped directly from The Wirecutter's website using Nokogiri.
 
-(I am not affiliated with The Wirecutter in any way; I'm merely a fan of their work who needed to build a gem for a school assignment, but I plan to build it out as I learn more!)  
+(I am not affiliated with The Wirecutter in any way; I'm merely a fan of their work who needed to build a gem for a school assignment, but I plan to build it out as I learn more!)
+
+UPDATED 5/23/18 - This branch of the gem is the result of my refactoring and cleaning up my code for my Flatiron School assessment.  It runs exactly the same, but with fewer lines of code!  
 
 ## Installation
 
