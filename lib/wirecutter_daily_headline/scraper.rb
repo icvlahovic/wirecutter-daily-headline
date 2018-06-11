@@ -23,10 +23,10 @@ class WirecutterDailyHeadline::Scraper
     end
 
     @article.links = content.css("div.content p > a, section.post-content p > a").map do |link|
-      if link.text == link['href'].strip
-        "#{link['href'].strip}"
+      if link.text == link['href']
+        "#{link['href']}"
       else
-        "#{link.text} - #{link['href'].strip}"
+        "#{link.text} - #{link['href']}"
       end
     end
 
